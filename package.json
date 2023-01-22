@@ -1,0 +1,95 @@
+{
+  "name": "@neelkamath/js-lib-template",
+  "version": "0.1.0",
+  "description": "A template for a JavaScript library.",
+  "scripts": {
+    "test": "jest",
+    "lint:prettier": "prettier . --ignore-path .gitignore",
+    "lint:prettier:check": "yarn lint:prettier -c",
+    "lint:prettier:fix": "yarn lint:prettier -w",
+    "lint:eslint": "eslint . --ignore-path .gitignore",
+    "lint:eslint:check": "yarn lint:eslint",
+    "lint:eslint:fix": "yarn lint:eslint --fix",
+    "lint:tsc": "tsc --noEmit",
+    "lint:typedoc": "yarn doc",
+    "lint:check": "yarn lint:eslint:check && yarn lint:prettier:check && yarn lint:tsc && yarn lint:typedoc",
+    "lint:fix": "yarn lint:eslint:fix && yarn lint:prettier:fix && yarn lint:tsc && yarn lint:typedoc",
+    "doc": "typedoc src/index.ts --includeVersion --excludePrivate --readme none --treatWarningsAsErrors",
+    "doc:build": "yarn doc",
+    "doc:watch": "yarn doc --watch",
+    "build": "tsc -p tsconfig-browser.json && tsc -p tsconfig-node.json"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist*"
+    ]
+  },
+  "types": "dist/browser/src/index.d.ts",
+  "license": "UNLICENSED",
+  "repository": "neelkamath/js-lib-template",
+  "keywords": [
+    "javascript typescript library template"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "author": "Neel Kamath <me@neelkamath.com> (https://neelkamath.com)",
+  "bugs": "https://github.com/neelkamath/js-lib-template/issues",
+  "homepage": "https://github.com/neelkamath/js-lib-template#readme",
+  "files": [
+    "dist/browser/src/",
+    "dist/node/src/"
+  ],
+  "browser": "dist/browser/src/index.js",
+  "dependencies": {
+    "cross-fetch": "3.1.5",
+    "typedi": "0.10.0"
+  },
+  "devDependencies": {
+    "@types/jest": "28.1.4",
+    "@typescript-eslint/eslint-plugin": "5.9.1",
+    "@typescript-eslint/parser": "5.9.1",
+    "eslint": "8.6.0",
+    "jest": "28.1.2",
+    "prettier": "2.5.1",
+    "ts-jest": "28.0.5",
+    "typedoc": "0.22.17",
+    "typescript": "4.7.3"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "trailingComma": "all"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "jest": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 6
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/no-namespace": "off",
+      "@typescript-eslint/no-empty-function": "off",
+      "no-constant-condition": "off"
+    }
+  }
+}
